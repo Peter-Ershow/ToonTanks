@@ -27,5 +27,12 @@ private:
 
 	UPROPERTY(EditAnywhere, Category= "Rotation")
 	float FireRange = 700.f;
+
+	FTimerHandle FireRateTimerHandle;
+	float FireRate = 2.f;
+	
+	void CheckFireCondition();
+
+	bool InFireRange() const;
 };
 

@@ -22,6 +22,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+
+	PlayerInputComponent-> BindAction(TEXT("Fire"),IE_Pressed, this, &ATank::Fire);
 }
 
 void ATank::BeginPlay()
@@ -36,7 +38,6 @@ void ATank::Move(float Value)
 	//get delta time frim our world for smooth movement
 	DeltaLocation.X = Value * UGameplayStatics::GetWorldDeltaSeconds(this) * MoveSpeed;
 	AddActorLocalOffset(DeltaLocation, true);
-	UE_LOG(LogTemp, Log, TEXT("Move is Triggered, %f"), Value);
 }
 
 void ATank::Turn(float Value)
@@ -56,17 +57,7 @@ void ATank::Tick(float DeltaTime)
 	{
 		FHitResult HitResult;
 		PlayerControllerRef->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
-
-		DrawDebugSphere(
-			GetWorld(),
-			HitResult.ImpactPoint,
-			20.f,
-			12,
-			FColor::Red,
-			false,
-			-1.f
-			);
-
+		
 		RotateTurret(HitResult.ImpactPoint);
 	}
 }
