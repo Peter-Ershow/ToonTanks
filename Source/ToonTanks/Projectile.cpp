@@ -42,6 +42,8 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 			MyOwner,
 			UDamageType::StaticClass()
 			);
+		
+		UE_LOG(LogTemp, Log, TEXT("%f Hit applied to %s"), Damage ,*OtherActor->GetName());
 
 		Destroy();
 	}
