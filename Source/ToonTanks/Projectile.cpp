@@ -72,6 +72,11 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 				GetActorLocation()
 				);
 		}
+
+		if(HitCameraShakeClass)
+		{
+			GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
+		}
 		UE_LOG(LogTemp, Log, TEXT("%f Hit applied to %s"), Damage ,*OtherActor->GetName());
 	}
 	Destroy();
