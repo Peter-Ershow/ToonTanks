@@ -26,6 +26,11 @@ ABasePawn::ABasePawn()
 
 }
 
+void ABasePawn::HandleDestruction()
+{
+	// TODO: Visual/sound effects
+}
+
 void ABasePawn::RotateTurret(FVector LookAtTarget)
 {
 	FVector ToTarget = LookAtTarget - TurretMesh-> GetComponentLocation();
@@ -47,11 +52,13 @@ void ABasePawn::Fire()
 {
 	if(ProjectileClass)
 	{
-		GetWorld()->SpawnActor<AProjectile>(
+		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
 			ProjectileClass,
 			SpawnPoint->GetComponentLocation(),
 			SpawnPoint->GetComponentRotation()
 			);
+
+		Projectile->SetOwner(this);
 	}
 }
 

@@ -28,6 +28,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void HandleDestruction();
+
+	APlayerController* GetTankPlayerController() const;
+
 protected:
 	virtual void BeginPlay() override;
 	
@@ -43,7 +47,7 @@ private:
 
 	void Turn(float Value);
 
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 
 public:	
 	// Called every frame
