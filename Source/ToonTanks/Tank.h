@@ -49,6 +49,9 @@ private:
 
 	APlayerController* TankPlayerController;
 
+	UPROPERTY(EditAnywhere, Category= "Death")
+	UParticleSystem* DeathParticles;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
