@@ -39,7 +39,7 @@ void ATower::BeginPlay()
 
 void ATower::CheckFireCondition()
 {
-	if(InFireRange()) {
+	if(Tank && InFireRange() && Tank->bAlive) {
 		// Find the distance to the tank
 		// check if in range
 		// is so, fire a bullet
